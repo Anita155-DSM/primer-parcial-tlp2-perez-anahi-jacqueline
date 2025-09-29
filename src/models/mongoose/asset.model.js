@@ -31,7 +31,11 @@ const AssetSchema = new Schema(
       type: Types.ObjectId,
       ref: 'Category',
       required: true
-    }]
+    }],
+    deletedAt: { 
+      type: Date, 
+      default: null 
+    }
   },
   { timestamps: true }
 );

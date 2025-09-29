@@ -4,6 +4,10 @@ import { UserModel } from "../models/mongoose/user.model.js";
 export const getAllUsers = async (_req, res) => {
   try {
     // TODO: devolver usuarios con profile y sus assets con sus categories (populate) (solo admin)
+    const users = await UserModel.find({ deletedAt: null }).populate({
+      path: "profile",
+      select: "name email",
+    }).populate( "assets").populate("categories");
     return res.status(200).json({ data: users });
   } catch (error) {
     console.log(error);
