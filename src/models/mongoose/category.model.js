@@ -17,5 +17,14 @@ const CategorySchema = new Schema(
 );
 
 // ! FALTA COMPLETAR ACA
+//populate reverso
+userSchema.virtual('assets',{
+    ref: 'Asset',
+    localField: '_id',
+    foreignField: 'responsible'
+})
+
+userSchema.set('toObject', { virtuals: true });
+userSchema.set('toJSON', { virtuals: true });
 
 export const CategoryModel = model("Category", CategorySchema);

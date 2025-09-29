@@ -11,19 +11,45 @@ const UserSchema = new Schema(
       minlength: 3,
       maxlength: 20,
     },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    email: { //solamente lo ordeno porque me confundo sino
+      type: String, 
+      required: true, 
+      unique: true 
+    },
+    password: { 
+      type: String, 
+      required: true 
+    },
     role: {
       type: String,
       enum: ["secretary", "administrator"],
       default: "secretary",
     },
     deletedAt: { type: Date, default: null },
-    // ! FALTA COMPLETAR ACA
+    //modelo embebido
+    profile: {
+      employee_number: {
+        type: String,
+        unique: true,
+        required: true
+      },
+      first_name: { 
+        type: String,
+        required: true
+      },
+      last_name: { 
+        type: String,
+        required: true
+      },
+      phone: { 
+        type: String
+      }
   },
-  { timestamps: true }
-);
+}, { 
+    timestamps: true 
+});
 
 // ! FALTA COMPLETAR ACA
+//relaciones
 
 export const UserModel = model("User", UserSchema);
