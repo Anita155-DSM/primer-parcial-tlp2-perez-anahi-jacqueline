@@ -1,3 +1,5 @@
+import { AssetModel } from "../models/mongoose/asset.model.js";
+
 export const createAsset = async (req, res) => {
   try {
     // TODO: crear asset (usuario autenticado)
@@ -10,6 +12,7 @@ export const createAsset = async (req, res) => {
 
 export const getAllAssets = async (_req, res) => {
   try {
+    const assets = await AssetModel.find({ deletedAt: null }).populate('User').populate('Category');
     // TODO: listar assets con el responsible y sus categories (populate) (solo admin)
     return res.status(200).json({ data: assets });
   } catch (error) {

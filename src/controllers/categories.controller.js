@@ -1,3 +1,5 @@
+import { CategoryModel } from "../models/mongoose/category.model.js";
+
 export const createCategory = async (req, res) => {
   try {
     // TODO: crear category (solo admin)
@@ -11,6 +13,7 @@ export const createCategory = async (req, res) => {
 export const getAllCategories = async (_req, res) => {
   try {
     // TODO: listar categories con sus assets (populate inverso) (solo admin)
+    const categories = await CategoryModel.find({ deletedAt: null }).populate('assets');
     return res.status(200).json({ data: categories });
   } catch (error) {
     console.log(error);

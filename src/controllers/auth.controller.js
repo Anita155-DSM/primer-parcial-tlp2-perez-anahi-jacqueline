@@ -1,3 +1,4 @@
+import { UserModel } from "../models/mongoose/user.model.js";
 export const register = async (req, res) => {
   try {
     // TODO: crear usuario con password hasheada y profile embebido
